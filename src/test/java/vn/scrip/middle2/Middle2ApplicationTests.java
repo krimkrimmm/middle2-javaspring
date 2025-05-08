@@ -1,13 +1,19 @@
-package vn.scrip.buoi21;
+package vn.scrip.middle2;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-
 @SpringBootTest
-class Buoi21ApplicationTests {
+class Middle2ApplicationTests
+{
 
 	@Test
 	void contextLoads() {
 	}
 
 }
+
+
+
+
+
+

@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>vn.scrip</groupId>
-	<artifactId>movie-app</artifactId>
+	<artifactId>minimiddle2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>middle</name>
 	<description>movie-app</description>
