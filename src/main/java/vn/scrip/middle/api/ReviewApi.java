@@ -1,46 +1,38 @@
 package vn.scrip.middle.api;
 
-import vn.scrip.middle.entity.Review;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import vn.scrip.middle.model.dto.ReviewDTO;
 import vn.scrip.middle.model.request.CreateReviewRequest;
 import vn.scrip.middle.model.request.UpdateReviewRequest;
 import vn.scrip.middle.service.ReviewService;
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/reviews")
-@RequiredArgsConstructor
 public class ReviewApi {
 
-    private final ReviewService reviewService;
+    @Autowired
+    private ReviewService reviewService;
 
-    @GetMapping()
-    public ResponseEntity<?> getReviews(@RequestParam(defaultValue = "1") Integer page,
-                                        @RequestParam(defaultValue = "5") Integer pageSize,
-                                        @RequestParam Integer movieId) {
-        Page<Review> reviewPage = reviewService.getReviewsByMovie(movieId, page, pageSize);
-        return ResponseEntity.ok(reviewPage);
+    @GetMapping("/movie/{movieId}")
+    public List<ReviewDTO> getReviewsByMovieId(@PathVariable Integer movieId) {
+        return reviewService.getReviewsByMovieId(movieId);
     }
 
-    @PostMapping()
-    public ResponseEntity<?> createReview(@Valid @RequestBody CreateReviewRequest request) {
-        Review review = reviewService.createReview(request);
-        return ResponseEntity.ok(review);
+    @PostMapping("/create")
+    public ReviewDTO createReview(@RequestBody CreateReviewRequest reviewRequest) {
+        return reviewService.createReview(reviewRequest);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<?> updateReview(@PathVariable Integer id,
-                                          @Valid @RequestBody UpdateReviewRequest request) {
-        Review review = reviewService.updateReview(id, request);
-        return ResponseEntity.ok(review);
+    @PutMapping("/update/{id}")
+    public ReviewDTO updateReview(@PathVariable Integer id, @RequestBody UpdateReviewRequest reviewRequest) {
+        return reviewService.updateReview(id, reviewRequest);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteReview(@PathVariable Integer id) {
+    @DeleteMapping("/delete/{id}")
+    public void deleteReview(@PathVariable Integer id) {
         reviewService.deleteReview(id);
-        return ResponseEntity.ok().build();
     }
 }

@@ -1,18 +1,18 @@
 package vn.scrip.middle.model.request;
 import jakarta.validation.constraints.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 public class LoginRequest {
+    private String username;
     private String email;
     private String password;
 }
+
 
 
 

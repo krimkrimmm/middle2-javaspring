@@ -1,11 +1,10 @@
 package vn.scrip.middle.controller.admin;
 
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import vn.scrip.middle.entity.Movie;
+import vn.scrip.middle.model.dto.MovieDTO;
 import vn.scrip.middle.model.request.UpsertMovieRequest;
 import vn.scrip.middle.service.MovieService;
 
@@ -17,7 +16,7 @@ public class AdminMovieController {
     private final MovieService movieService;
 
     @GetMapping
-    public Page<Movie> getAllMovies(
+    public Page<MovieDTO> getAllMovies(
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int pageSize
     ) {
@@ -25,14 +24,14 @@ public class AdminMovieController {
     }
 
     @PostMapping
-    public ResponseEntity<Movie> createMovie(@Valid @RequestBody UpsertMovieRequest request) {
+    public ResponseEntity<MovieDTO> createMovie(@RequestBody UpsertMovieRequest request) {
         return ResponseEntity.ok(movieService.createMovie(request));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Movie> updateMovie(
+    public ResponseEntity<MovieDTO> updateMovie(
             @PathVariable Integer id,
-            @Valid @RequestBody UpsertMovieRequest request
+            @RequestBody UpsertMovieRequest request
     ) {
         return ResponseEntity.ok(movieService.updateMovie(id, request));
     }

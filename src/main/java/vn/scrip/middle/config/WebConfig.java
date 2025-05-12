@@ -1,22 +1,21 @@
 package vn.scrip.middle.config;
 
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.*;
+import vn.scrip.middle.config.AuthorizationInterceptor;
 
 @Configuration
-@RequiredArgsConstructor
 public class WebConfig implements WebMvcConfigurer {
-    private final AuthenticationInterceptor authenticationInterceptor;
-    private final AuthorizationInterceptor authorizationInterceptor;
+    @Autowired
+    private AuthenticationInterceptor authenticationInterceptor;
+
+    @Autowired
+    private AuthorizationInterceptor authorizationInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(authenticationInterceptor)
-                .addPathPatterns("/api/reviews", "/api/reviews/**", "/phim-yeu-thich");
-
-//        registry.addInterceptor(authorizationInterceptor)
-//                .addPathPatterns("/api/admin/**", "/admin/**", "/phim-bo", "/api/favorites", "/api/favorites/**");
+        registry.addInterceptor(authenticationInterceptor);
+        registry.addInterceptor(authorizationInterceptor);
     }
 }

@@ -2,19 +2,15 @@ package vn.scrip.middle.service;
 
 import org.springframework.data.domain.Page;
 import vn.scrip.middle.entity.Episode;
-import vn.scrip.middle.model.dto.EpisodeRequest;
-
-import java.util.List;
+import vn.scrip.middle.model.request.UpsertEpisodeRequest;
 
 public interface EpisodeService {
-    Page<Episode> getEpisodes(Integer movieId, int page, int pageSize);
-    Episode createEpisode(EpisodeRequest request);
-    Episode updateEpisode(Integer id, EpisodeRequest request);
+
+    Page<Episode> getAllEpisodes(int page, int pageSize);
+
+    Episode createEpisode(UpsertEpisodeRequest request);
+
+    Episode updateEpisode(Integer id, UpsertEpisodeRequest request);
+
     void deleteEpisode(Integer id);
-
-    // ➔ THÊM HÀM NÀY:
-    List<Episode> findEpisodesByMovieId(Integer movieId);
-
-    // ➔ Nếu bạn có dùng findEpisodeByDisplayOrder, cũng thêm:
-    Episode findEpisodeByDisplayOrder(Integer movieId, String displayOrder);
 }

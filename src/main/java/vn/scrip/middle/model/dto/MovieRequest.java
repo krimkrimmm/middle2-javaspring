@@ -1,35 +1,19 @@
 package vn.scrip.middle.model.dto;
-
-import jakarta.validation.constraints.*;
-import lombok.Data;
+import lombok.*;
 import vn.scrip.middle.model.enums.MovieType;
-
-import java.util.List;
-
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+
+@Builder
 public class MovieRequest {
-    @NotEmpty
-    private String name;
-
-    @NotEmpty
-    private String trailerUrl;
-
-    @NotEmpty
+    private String title;
     private String description;
-
-    @NotNull
-    private Integer releaseYear;
-
-    @NotNull
-    private MovieType type;
-
-    @NotNull
+    private String thumbnail;
+    private Double rating;
     private Boolean status;
-
-    @NotNull
-    private Integer countryId;
-
-    private List<Integer> genreIds;
-    private List<Integer> actorIds;
-    private List<Integer> directorIds;
+    private MovieType type;
 }
+
+
+

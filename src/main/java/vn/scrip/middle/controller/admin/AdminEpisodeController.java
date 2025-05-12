@@ -1,12 +1,11 @@
 package vn.scrip.middle.controller.admin;
 
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.scrip.middle.entity.Episode;
-import vn.scrip.middle.model.dto.EpisodeRequest;
+import vn.scrip.middle.model.request.UpsertEpisodeRequest;
 import vn.scrip.middle.service.EpisodeService;
 
 @RestController
@@ -16,28 +15,31 @@ public class AdminEpisodeController {
 
     private final EpisodeService episodeService;
 
+    // Lấy tất cả các episode với phân trang
     @GetMapping
-    public Page<Episode> getEpisodes(
-            @RequestParam Integer movieId,
+    public Page<Episode> getAllEpisodes(
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int pageSize
     ) {
-        return episodeService.getEpisodes(movieId, page, pageSize);
+        return episodeService.getAllEpisodes(page, pageSize);
     }
 
+    // Tạo mới một episode
     @PostMapping
-    public ResponseEntity<Episode> createEpisode(@Valid @RequestBody EpisodeRequest request) {
+    public ResponseEntity<Episode> createEpisode(@RequestBody UpsertEpisodeRequest request) {
         return ResponseEntity.ok(episodeService.createEpisode(request));
     }
 
+    // Cập nhật một episode
     @PutMapping("/{id}")
     public ResponseEntity<Episode> updateEpisode(
             @PathVariable Integer id,
-            @Valid @RequestBody EpisodeRequest request
+            @RequestBody UpsertEpisodeRequest request
     ) {
         return ResponseEntity.ok(episodeService.updateEpisode(id, request));
     }
 
+    // Xóa một episode
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteEpisode(@PathVariable Integer id) {
         episodeService.deleteEpisode(id);

@@ -1,10 +1,8 @@
 package vn.scrip.middle.entity;
-
 import vn.scrip.middle.model.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
 import java.time.LocalDateTime;
 
 @ToString
@@ -16,20 +14,19 @@ import java.time.LocalDateTime;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "users")
+
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
-
     String username;
     String displayName;
-
     @Column(unique = true, nullable = false)
     String email;
     String avatar;
+
     String phone;
     String password;
-
     @Enumerated(EnumType.STRING)
     UserRole role;
 

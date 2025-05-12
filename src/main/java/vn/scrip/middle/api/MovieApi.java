@@ -1,39 +1,28 @@
 package vn.scrip.middle.api;
 
-import vn.scrip.middle.model.request.UpsertMovieRequest;
-import vn.scrip.middle.service.MovieService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
+import vn.scrip.middle.model.dto.MovieDTO;
+import vn.scrip.middle.service.MovieService;
 
 @RestController
-@RequestMapping("api/admin/movies")
+@RequestMapping("/api/movies")
 @RequiredArgsConstructor
 public class MovieApi {
+
     private final MovieService movieService;
 
-
-    @GetMapping()
-    ResponseEntity<?> getAllMovies(@RequestParam(defaultValue = "1") Integer page,
-                                   @RequestParam(defaultValue = "10") Integer pageSize) {
-        return ResponseEntity.ok(movieService.getAllMovies(page, pageSize));
+    @GetMapping
+    public Page<MovieDTO> getAllMovies(
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "10") int pageSize
+    ) {
+        return movieService.getAllMovies(page, pageSize);
     }
 
-    @PostMapping
-    ResponseEntity<?> createMovie(@Valid @RequestBody UpsertMovieRequest request) {
-        return ResponseEntity.ok(movieService.createMovie(request));
-    }
-
-    @PutMapping("/{id}")
-    ResponseEntity<?> updateMovie(@Valid @RequestBody UpsertMovieRequest request,
-                                  @PathVariable Integer id) {
-        return ResponseEntity.ok(movieService.updateMovie(id, request));
-    }
-
-    @DeleteMapping("/{id}")
-    ResponseEntity<?> deleteMovie(@PathVariable Integer id) {
-        movieService.deleteMovie(id);
-        return ResponseEntity.ok().build();
+    @GetMapping("/{id}")
+    public MovieDTO getMovieById(@PathVariable Integer id) {
+        return movieService.getMovieById(id);
     }
 }

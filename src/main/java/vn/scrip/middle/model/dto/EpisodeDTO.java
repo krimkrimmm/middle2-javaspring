@@ -1,21 +1,19 @@
 package vn.scrip.middle.model.dto;
-
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-
 @Data
-public class EpisodeDTO {
-
-    @NotEmpty
+public class EpisodeDTO
+{
+    private Integer id;
     private String name;
-
-    @NotNull
+    private String videoUrl;
     private Integer displayOrder;
-
-    @NotNull
-    private Boolean status;
-
-    @NotNull
-    private Long movieId;
+    private Integer movieId;
 }
+
+
+
+
+
+
