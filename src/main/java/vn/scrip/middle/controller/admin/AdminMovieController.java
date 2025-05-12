@@ -9,7 +9,7 @@ import vn.scrip.middle.model.request.UpsertMovieRequest;
 import vn.scrip.middle.service.MovieService;
 
 @RestController
-@RequestMapping("/api/admin/movies")
+@RequestMapping("/api/admin/movie")
 @RequiredArgsConstructor
 public class AdminMovieController {
 

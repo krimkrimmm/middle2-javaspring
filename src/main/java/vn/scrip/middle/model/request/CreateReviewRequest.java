@@ -15,7 +15,7 @@ public class CreateReviewRequest {
     @Min(value = 1, message = "Rating phải lớn hơn hoặc bằng 1")
     @Max(value = 10, message = "Rating phải nhỏ hơn hoặc bằng 10")
 
-    private Integer rating;
+    private Double rating;
     @NotNull(message = "movieId không được để trống")
     private Integer movieId;
     private Integer userId;

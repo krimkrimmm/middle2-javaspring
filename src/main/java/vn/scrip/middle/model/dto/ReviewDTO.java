@@ -1,20 +1,19 @@
 package vn.scrip.middle.model.dto;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
-public class ReviewDTO
-{
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class ReviewDTO {
     private Integer id;
     private Integer movieId;
     private Integer userId;
     private String content;
-    private Integer rating;
+
+    private Double rating; // Đảm bảo kiểu Double cho rating
 }
-
-
-
-
-
-
-

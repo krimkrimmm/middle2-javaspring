@@ -18,5 +18,12 @@ public class UpdateReviewRequest {
     @NotNull(message = "Rating không được để trống")
     @Min(value = 1, message = "Rating phải lớn hơn hoặc bằng 1")
     @Max(value = 10, message = "Rating phải nhỏ hơn hoặc bằng 10")
-    private Integer rating;
+    private Double rating;
 }
+
+
+
+
+
+
+
